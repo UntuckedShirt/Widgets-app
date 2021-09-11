@@ -4,7 +4,7 @@ import Accordion from './components/Accordion'
 //this is a static componeny below
 const items = [
     {
-        title: "what is react?",
+        title: "What is react?",
         content: "React isa front end jS framework",
     },
     {
@@ -18,10 +18,12 @@ const items = [
     },
 ];
 
-export default () => {
+const App = () => {
     return (
         <div>
-        <Accordion items = {items} />
-    </div>
-    )
+            <Accordion items={items} />
+        </div>
+    );
 };
+
+export default App;
