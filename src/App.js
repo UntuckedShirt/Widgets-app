@@ -3,6 +3,8 @@ import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
+import Route from './components/Route';
+import Header from './components/Header';
 
 //this is a static componeny below
 const items = [
@@ -34,14 +36,62 @@ const options = [
       label: "A Shade of Blue",
       value: "blue",
     },
-  ];
+];
   
-  const App = () => {
-    
+// below are an example of the repitive functions that were cleaned up
+
+//   const showAccordion = () => {
+//     if (window.location.pathname === "/") {
+//       return <Accordion items={items} />;
+//     }
+//   };
+  
+//   const showList = () => {
+//     if (window.location.pathname === "/list") {
+//       return <Search />;
+//     }
+//   };
+  
+//   const showDropdown = () => {
+//     if (window.location.pathname === "/dropdown") {
+//       return <Dropdown />;
+//     }
+//   };
+  
+//   const showTranslate = () => {
+//     if (window.location.pathname === "/translate") {
+//       return <Translate />;
+//     }
+//   };
+
+// Whenever we providea jsx into another jsx the innder element is provided to the outer one
+// called children
+  
+const App = () => {
+    const [selected, setSelected] = useState(options[0]);
     return (
-      <div>
-        <Translate />
-        
+        <div>
+            <Header />
+            <Route
+                path="/">
+                <Accordion items={items} />
+            </Route>
+            <Route path='/list'>
+                <Search />
+            </Route>
+
+            <Route path='/dropdown'>
+                <Dropdown
+                label="Select a color"
+                options={options}
+                selected={selected}
+                onSelectedChange={setSelected}
+                    />
+            </Route>
+
+            <Route path='/translate'>
+                <Translate />
+            </Route>
       </div>
     );
   };
